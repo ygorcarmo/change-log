@@ -3,6 +3,7 @@ import apiRouter from "./api/index.js"
 import morgan from "morgan"
 import { PrismaClient } from "@prisma/client"
 import { protect } from "./modules/auth.js"
+import { RequestWithUserClaims } from "./types.js"
 
 const app = express()
 const PORT = process.env.PORT || 3000

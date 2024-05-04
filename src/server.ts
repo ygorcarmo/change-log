@@ -3,7 +3,7 @@ import apiRouter from "./api/index.js"
 import morgan from "morgan"
 import { PrismaClient } from "@prisma/client"
 import { protect } from "./modules/auth.js"
-import { RequestWithUserClaims } from "./types.js"
+import authRouter from "./api/routes/auth.js"
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api", protect, apiRouter)
+app.use("/auth", authRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)

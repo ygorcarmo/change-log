@@ -7,5 +7,6 @@ export interface RequestWithUserClaims extends Request {
 }
 
 export interface UserClaims extends JwtPayload {
-  user: User
+  id: string
+  username: string
 }

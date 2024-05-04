@@ -1,17 +1,34 @@
 import { Router } from "express"
+import { body, validationResult } from "express-validator"
+import { handleInputErrors } from "../../modules/middleware.js"
+import {
+  createProduct,
+  deleteProduct,
+  getProduct,
+  getProducts,
+  updateProduct,
+} from "../../handlers/product.js"
 
 const productRouter = Router()
 
-productRouter.get("/", (req, res) => {
-  res.json({ message: "heelo product" })
-})
+productRouter.get("/", getProducts)
 
-productRouter.get("/:id", (req, res) => {})
+productRouter.get("/:id", getProduct)
 
-productRouter.post("/", (req, res) => {})
+productRouter.post(
+  "/",
+  body("name").isString(),
+  handleInputErrors,
+  createProduct
+)
 
-productRouter.put("/:id", (req, res) => {})
+productRouter.put(
+  "/:id",
+  body("name").isString(),
+  handleInputErrors,
+  updateProduct
+)
 
-productRouter.delete("/:id", (req, res) => {})
+productRouter.delete("/:id", deleteProduct)
 
 export default productRouter
